@@ -4,6 +4,13 @@
       "email": "",
       "password": "",
       "secret_seed" : ""
+    },
+    "passwordless":{
+      "email": ""
+    },
+    "github":{
+      "username": "",
+      "password": ""
     }
   }
 }
