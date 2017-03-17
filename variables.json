@@ -5,8 +5,12 @@
       "password": "",
       "secret_seed" : ""
     },
-    "passwordless":{
+    "passwordless": {
       "email": ""
+    },
+    "github": {
+      "username": "",
+      "password": ""
     }
   }
 }

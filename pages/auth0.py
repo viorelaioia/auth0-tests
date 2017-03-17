@@ -15,6 +15,11 @@ class Auth0(Base):
     _github_username_field_locator = (By.ID, 'login_field')
     _github_password_field_locator = (By.ID, 'password')
     _github_sign_in_button_locator = (By.CSS_SELECTOR, '.btn.btn-primary.btn-block')
+    _login_with_google_button_locator = (By.CSS_SELECTOR, 'button.auth0-lock-social-button[data-provider="google-oauth2"]')
+    _google_email_field_locator = (By.ID, 'Email')
+    _google_password_field_locator = (By.ID, 'Passwd')
+    _next_button_locator = (By.ID, 'next')
+    _google_sign_in_button_locator = (By.ID, 'signIn')
 
     def click_login_with_ldap(self):
         self.wait_for_element_visible(*self._login_with_ldap_button_locator)
@@ -53,3 +58,21 @@ class Auth0(Base):
     def click_github_sign_in(self):
         self.wait_for_element_visible(*self._github_sign_in_button_locator)
         self.selenium.find_element(*self._github_sign_in_button_locator).click()
+
+    def click_login_with_google(self):
+        self.wait_for_element_visible(*self._login_with_google_button_locator)
+        self.selenium.find_element(*self._login_with_google_button_locator).click()
+
+    def enter_google_email(self, email):
+        self.wait_for_element_visible(*self._google_email_field_locator)
+        self.selenium.find_element(*self._google_email_field_locator).send_keys(email)
+
+    def click_next(self):
+        self.selenium.find_element(*self._next_button_locator).click()
+
+    def enter_google_password(self, password):
+        self.wait_for_element_visible(*self._google_password_field_locator)
+        self.selenium.find_element(*self._google_password_field_locator).send_keys(password)
+
+    def click_google_sign_in(self):
+        self.selenium.find_element(*self._google_sign_in_button_locator).click()
