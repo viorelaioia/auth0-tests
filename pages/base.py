@@ -25,6 +25,16 @@ class Base(object):
             if count == self.timeout:
                 raise Exception(':'.join(locator) + " is not visible")
 
+    def wait_for_element_present(self, *locator):
+        """Wait for an element to become present."""
+        self.selenium.implicitly_wait(0)
+        try:
+            WebDriverWait(self.selenium, self.timeout).until(
+                lambda s: s.find_element(*locator))
+        finally:
+            # set back to where you once belonged
+            self.selenium.implicitly_wait(10)
+
     @property
     def is_page_loaded(self):
         page_state = self.selenium.execute_script('return document.readyState;')
