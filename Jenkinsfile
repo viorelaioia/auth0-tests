@@ -1,23 +1,11 @@
-import groovy.json.JsonOutput
+@Library('fxtest@1.10') _
 
-def environments = [
-  desktop: [
-    browserName: 'Firefox',
-    version: '59.0',
-    platform: 'Windows 10'
+/** Desired capabilities */
+def capabilities = [
+  browserName: 'Firefox',
+  version: '59.0',
+  platform: 'Windows 10'
 ]
-]
-
-def writeCapabilities(desiredCapabilities) {
-    def defaultCapabilities = [
-        build: env.BUILD_TAG,
-        public: 'public restricted'
-    ]
-    def capabilities = defaultCapabilities.clone()
-    capabilities.putAll(desiredCapabilities)
-    def json = JsonOutput.toJson([capabilities: capabilities])
-    writeFile file: 'capabilities.json', text: json
-}
 
 pipeline {
   agent {label 'mesos-testing'}
