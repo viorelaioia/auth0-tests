@@ -1,4 +1,4 @@
-@Library('fxtest@1.10') _
+@Library('fxtest@1.6') _
 
 /** Desired capabilities */
 def capabilities = [
@@ -8,7 +8,7 @@ def capabilities = [
 ]
 
 pipeline {
-  agent {label 'mesos-testing'}
+  agent any
   options {
     timestamps()
     timeout(time: 1, unit: 'HOURS')
