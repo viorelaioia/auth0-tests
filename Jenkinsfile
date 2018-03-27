@@ -1,10 +1,3 @@
-/** Desired capabilities */
-def capabilities = [
-  browserName: 'Firefox',
-  version: '59.0',
-  platform: 'Windows 10'
-]
-
 pipeline {
   agent {label 'mesos-testing'}
   options {
@@ -17,7 +10,9 @@ pipeline {
       "-n=auto " +
       "--tb=short " +
       "--driver=SauceLabs " +
-      "--variables=capabilities.json " +
+      "--browserName=Firefox " +
+      "--version=59.0 " +
+      "--platform=Windows 10 " +
       "--variables=${VARIABLES}"
     SAUCELABS_API_KEY = credentials('SAUCELABS_API_KEY')
   }
