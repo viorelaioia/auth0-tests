@@ -1,12 +1,3 @@
-@Library('fxtest@1.6') _
-
-/** Desired capabilities */
-def capabilities = [
-  browserName: 'Firefox',
-  version: '59.0',
-  platform: 'Windows 10'
-]
-
 pipeline {
   agent {label 'mesos-testing'}
   options {
