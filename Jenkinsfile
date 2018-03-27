@@ -31,6 +31,7 @@ pipeline {
       "-n=auto " +
       "--tb=short " +
       "--driver=SauceLabs " +
+      "--variables=capabilities.json " +
       "--variables=${VARIABLES}"
     SAUCELABS_API_KEY = credentials('SAUCELABS_API_KEY')
   }
