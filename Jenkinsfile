@@ -1,3 +1,24 @@
+import groovy.json.JsonOutput
+
+def environments = [
+  desktop: [
+    browserName: 'Firefox',
+    version: '59.0',
+    platform: 'Windows 10'
+]
+]
+
+def writeCapabilities(desiredCapabilities) {
+    def defaultCapabilities = [
+        build: env.BUILD_TAG,
+        public: 'public restricted'
+    ]
+    def capabilities = defaultCapabilities.clone()
+    capabilities.putAll(desiredCapabilities)
+    def json = JsonOutput.toJson([capabilities: capabilities])
+    writeFile file: 'capabilities.json', text: json
+}
+
 pipeline {
   agent {label 'mesos-testing'}
   options {
@@ -10,9 +31,6 @@ pipeline {
       "-n=auto " +
       "--tb=short " +
       "--driver=SauceLabs " +
-      "--browserName=Firefox " +
-      "--version=59.0 " +
-      "--platform=Windows 10 " +
       "--variables=${VARIABLES}"
     SAUCELABS_API_KEY = credentials('SAUCELABS_API_KEY')
   }
