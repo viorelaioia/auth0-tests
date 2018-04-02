@@ -1,9 +1,5 @@
 version: 0.2
 
-env:
-  parameter-store:
-    SAUCELABS_API_KEY: "SAUCELABS_API_KEY"
-
 phases:
   pre_build:
     commands:
