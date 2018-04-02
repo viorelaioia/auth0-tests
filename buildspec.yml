@@ -1,0 +1,28 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo "Started prebuild phase"
+
+  build:
+    commands:
+      - echo "Starting running the tests"
+      - apt-get update -y
+      - apt-get install -y software-properties-common \
+      - add-apt-repository ppa:deadsnakes/ppa \
+      - apt-get update \
+      - apt-get install -y bzip2 curl firefox python2.7 \
+      - curl -fsSL https://bootstrap.pypa.io/get-pip.py | python2.7
+      - pip install tox
+      - apt-get install firefox xvfb -y
+      - Xvfb :10 -ac &
+      - export DISPLAY=:10
+      - wget https://github.com/mozilla/geckodriver/releases/download/v0.20.0/geckodriver-v0.20.0-linux64.tar.gz
+      - tar -xvzf geckodriver-v0.20.0-linux64.tar.gz
+      - chmod +x geckodriver
+      - cp geckodriver /usr/local/bin/
+      - pytest --variables=/variables.json
+
+  post_build:
+    commands:
+      - echo "Post build ..."
