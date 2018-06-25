@@ -12,8 +12,7 @@ class TwoFactorAuthenticationPage(Base):
 
     def enter_passcode(self, passcode):
         self.selenium.switch_to_frame('duo_iframe')
-        enter_passcode = self.selenium.find_element(*self._enter_passcode_button)
-        self.selenium.execute_script("arguments[0].scrollIntoView();", enter_passcode)
+        self.wait_for_element_visible(*self._enter_passcode_button)
         self.selenium.find_element(*self._enter_passcode_button).click()
         self.selenium.find_element(*self._passcode_field_locator).send_keys(passcode)
         self.selenium.find_element(*self._enter_passcode_button).click()
