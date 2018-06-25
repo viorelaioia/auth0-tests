@@ -41,6 +41,7 @@ def dump_secrets():
             }
         }
     }
+    print (secrets)
     return secrets
 
 
