@@ -1,4 +1,5 @@
 import pyotp
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -109,6 +110,7 @@ class Auth0(Base):
         passcode = pyotp.TOTP(secret).now()
         self.selenium.find_element(*self._github_passcode_field_locator).send_keys(passcode)
         self.selenium.find_element(*self._github_enter_passcode_button_locator).click()
+        time.sleep(2)
         if self.is_authorize_github_button_shown:
             self.selenium.find_element(*self._authorize_github_locator).click()
 
