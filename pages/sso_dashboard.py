@@ -32,8 +32,10 @@ class SsoDashboard(Base):
         return TwoFactorAuthenticationPage(self.base_url, self.selenium)
 
     def click_discourse(self, message):
+        time.sleep(2)
         self.selenium.find_element(*self._discourse_app_locator).click()
         print (self.selenium.window_handles)
+        time.sleep(2)
         self.selenium.switch_to.window(self.selenium.window_handles[1])
         auth = Auth0(self.base_url, self.selenium)
         auth.wait_for_message(message)
