@@ -34,6 +34,7 @@ class SsoDashboard(Base):
     def click_discourse(self, message):
         time.sleep(3)
         self.selenium.find_element(*self._discourse_app_locator).click()
+        print (self.selenium.window_handles)
         self.selenium.switch_to.window(self.selenium.window_handles[1])
         auth = Auth0(self.base_url, self.selenium)
         auth.wait_for_message(message)
