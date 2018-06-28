@@ -8,7 +8,7 @@ from pages.two_factor_authentication_page import TwoFactorAuthenticationPage
 
 
 class SsoDashboard(Base):
-    _discourse_app_locator = (By.XPATH, '//*[@id="app-grid"]/ul/li[7]/a')
+    _discourse_app_locator = (By.XPATH, '//*[@data-id="Discourse"]')
 
     def __init__(self, base_url, selenium, open_url=True):
         Base.__init__(self, base_url, selenium)
@@ -33,7 +33,8 @@ class SsoDashboard(Base):
 
     def click_discourse(self, message):
         time.sleep(3)
-        self.selenium.find_element(*self._discourse_app_locator).click()
+        element = self.selenium.find_element(*self._discourse_app_locator)
+        self.selenium.execute_script("arguments[0].click();", element)
         print (self.selenium.window_handles)
         self.selenium.switch_to.window(self.selenium.window_handles[1])
         auth = Auth0(self.base_url, self.selenium)
