@@ -41,7 +41,7 @@ class TestAccount:
         test_rp.click_logout()
         assert test_rp.is_sign_in_button_displayed
 
-    @pytest.mark.xfail("Re-enable after google account is created in portland region")
+    @pytest.mark.xfail
     @pytest.mark.nondestructive
     def test_login_with_google(self, base_url, selenium, google_user):
         test_rp = HomepageTestRp(base_url, selenium)
