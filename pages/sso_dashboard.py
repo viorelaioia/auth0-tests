@@ -8,7 +8,7 @@ from pages.two_factor_authentication_page import TwoFactorAuthenticationPage
 
 
 class SsoDashboard(Base):
-    _discourse_app_locator = (By.XPATH, '//*[@id="app-grid"]/ul/li[17]/a')
+    _discourse_app_locator = (By.XPATH, '//*[@id="app-grid"]/ul/li/a[@data-id="Discourse"]')
 
     def __init__(self, base_url, selenium, open_url=True):
         Base.__init__(self, base_url, selenium)
