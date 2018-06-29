@@ -14,6 +14,7 @@ class TwoFactorAuthenticationPage(Base):
 
     def enter_passcode(self, passcode):
         self.selenium.switch_to_frame('duo_iframe')
+        self.wait_for_element_visible(*self._enter_passcode_button)
         WebDriverWait(self.selenium, self.timeout).\
             until(lambda s: EC.element_to_be_clickable((By.CSS_SELECTOR, ".passcode-label .positive.auth-button")))
         self.selenium.find_element(*self._enter_passcode_button).click()
