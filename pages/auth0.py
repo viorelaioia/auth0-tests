@@ -64,7 +64,7 @@ class Auth0(Base):
 
     @property
     def is_authorize_github_button_shown(self):
-        return self.is_element_visible(*self._authorize_github_locator)
+        return self.is_element_enabled(*self._authorize_github_locator)
 
     def wait_for_spinner(self):
         WebDriverWait(self.selenium, self.timeout).until(lambda s: not self.is_spinner_shown)
@@ -110,7 +110,6 @@ class Auth0(Base):
         passcode = pyotp.TOTP(secret).now()
         self.selenium.find_element(*self._github_passcode_field_locator).send_keys(passcode)
         self.selenium.find_element(*self._github_enter_passcode_button_locator).click()
-        time.sleep(2)
         if self.is_authorize_github_button_shown:
             self.selenium.find_element(*self._authorize_github_locator).click()
 
