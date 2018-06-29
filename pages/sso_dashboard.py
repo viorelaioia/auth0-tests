@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -9,7 +8,7 @@ from pages.two_factor_authentication_page import TwoFactorAuthenticationPage
 
 
 class SsoDashboard(Base):
-    _discourse_app_locator = (By.CSS_SELECTOR, 'a[data-id="Discourse"]')
+    _discourse_app_locator = (By.CSS_SELECTOR, '#app-grid a[data-id="Discourse"]')
 
     def __init__(self, base_url, selenium, open_url=True):
         Base.__init__(self, base_url, selenium)
