@@ -59,7 +59,7 @@ def firefox_accounts_user(stored_users):
 
 
 @pytest.mark.optionalhook
-def pytest_html_results_table_row(report, cells):
-    cells.insert(2, html.td(report.description))
+def pytest_html_results_table_row(cells):
+    cells.insert(2, html.td("hello"))
     cells.insert(1, html.td(datetime.time(), class_='col-time'))
     cells.pop()
