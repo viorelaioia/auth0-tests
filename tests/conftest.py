@@ -53,3 +53,9 @@ def google_user(stored_users):
 @pytest.fixture
 def firefox_accounts_user(stored_users):
     return stored_users['fxa']
+
+
+@pytest.mark.optionalhook
+def pytest_html_results_table_row(report, cells):
+    if report.passed:
+      del cells[:]
