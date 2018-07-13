@@ -57,5 +57,5 @@ def firefox_accounts_user(stored_users):
 
 @pytest.mark.optionalhook
 def pytest_html_results_table_row(report, cells):
-    if report.passed:
+    if report.failed:
       del cells[:]
