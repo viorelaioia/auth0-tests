@@ -1,5 +1,8 @@
+import datetime
 import pytest
 import pyotp
+from py._xmlgen import html
+
 import restmail
 
 
@@ -57,5 +60,6 @@ def firefox_accounts_user(stored_users):
 
 @pytest.mark.optionalhook
 def pytest_html_results_table_row(report, cells):
-    if report.failed:
-      del cells[:]
+    cells.insert(2, html.td(report.description))
+    cells.insert(1, html.td(datetime.time(), class_='col-time'))
+    cells.pop()
