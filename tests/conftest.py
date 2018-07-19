@@ -1,8 +1,5 @@
-import datetime
 import pytest
 import pyotp
-from py._xmlgen import html
-
 import restmail
 
 
@@ -56,10 +53,3 @@ def google_user(stored_users):
 @pytest.fixture
 def firefox_accounts_user(stored_users):
     return stored_users['fxa']
-
-
-@pytest.mark.optionalhook
-def pytest_html_results_table_row(cells):
-    cells.insert(2, html.td("hello"))
-    cells.insert(1, html.td(datetime.time(), class_='col-time'))
-    cells.pop()
